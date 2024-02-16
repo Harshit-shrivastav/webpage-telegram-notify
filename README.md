@@ -35,4 +35,4 @@ This project is licensed under the Apache License - see the [LICENSE](LICENSE) f
 
 ## Acknowledgments
 
-This project is inspired by the need for a simple notification system for website owners to track visitor subscriptions.
+This project is inspired by the need for a simple notification system for website owners to track visitor.
