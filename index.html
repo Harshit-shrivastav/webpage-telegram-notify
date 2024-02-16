@@ -1,0 +1,82 @@
+<!--Please give credit while using this code on your website-->
+<!-- Written by https://harshitshrivastav.me-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webpage notification </title>
+</head>
+<body>
+    <h1>Web page telegram notification bot.</h1>
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <button type="button" id="notifyButton">Notify Me</button>
+    </form>
+
+    <script>
+        const botApiToken = '6086267913:AAHLavNglgsuUcsMain9k6bVIQpxpkLmDKk';
+        const userId = '5979279455';
+
+        document.getElementById('notifyButton').addEventListener('click', sendNotification);
+
+        async function sendNotification() {
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+
+            const name = nameInput.value;
+            const email = emailInput.value;
+
+            if (!name || !email) {
+                alert('Please provide both name and email.');
+                return;
+            }
+
+            try {
+                const ipAddress = await getIpAddress();
+                const currentTime = getCurrentTime();
+                const currentWebAddress = window.location.href;
+
+                const message = `New visitor!\nName: ${name}\nEmail: ${email}\nIP Address: ${ipAddress}\nTime: ${currentTime}\nWeb Address: ${currentWebAddress}`;
+
+                await sendTelegramMessage(message);
+
+                nameInput.value = '';
+                emailInput.value = '';
+
+                alert('Notification sent successfully!');
+            } catch (error) {
+                console.error('Error while sending notification:', error);
+                alert('Something went wrong while sending notification on telegram.');
+            }
+        }
+
+        async function getIpAddress() {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleString();
+        }
+
+        async function sendTelegramMessage(message) {
+            await fetch(`https://api.telegram.org/bot${botApiToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: userId,
+                    text: message,
+                }),
+            });
+        }
+    </script>
+</body>
+</html>
