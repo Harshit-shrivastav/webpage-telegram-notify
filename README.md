@@ -13,11 +13,16 @@ This is a simple website that allows admin to record visitors data. When a visit
 To use this code:
 
 1. Clone this repository to your local machine.
-2. Open the `index.html` file in a web browser.
-3. Fill out the name and email fields.
-4. Click the "Notify Me" button.
-5. If successful, you will receive an alert saying "Notification sent successfully!".
+2. Replace SECRET_USER_ID and SECRET_BOT_TOKEN variables in line 21 and line 22 in the code.
+3. Open the `index.html` file in a web browser.
+4. Fill out the name and email fields.
+5. Click the "Notify Me" button.
+6. If successful, you will receive an alert saying "Notification sent successfully!".
 
+## Variables 
+- SECRET_USER_ID - Get it from the https://telegram.me/my_id_bot or similar bot
+- SECRET_BOT_TOKEN - Get it from https://telegram.me/botfather
+  Check line 21 and line 22 in the code
 ## Requirements
 
 - Web browser with JavaScript enabled
